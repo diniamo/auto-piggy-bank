@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace AutoPiggyBank
 {
@@ -69,14 +70,28 @@ namespace AutoPiggyBank
 
             var toReturn = new List<Item>();
 
-            if (copper > 0) toReturn.Add(new Item(ItemID.CopperCoin, (int) copper));
-            if (silver > 0) toReturn.Add(new Item(ItemID.SilverCoin, (int) silver));
-            if (gold > 0)   toReturn.Add(new Item(ItemID.GoldCoin, (int) gold));
-
-            while (plat > 0)
+            if (!ModContent.GetInstance<AutoPiggyBankClientConfig>().InvertMoneyPlacementOrder)
             {
-                toReturn.Add(new Item(ItemID.PlatinumCoin, Math.Min((int) plat, 999)));
-                plat -= Math.Min(plat, 999);
+                if (copper > 0) toReturn.Add(new Item(ItemID.CopperCoin, (int)copper));
+                if (silver > 0) toReturn.Add(new Item(ItemID.SilverCoin, (int)silver));
+                if (gold > 0) toReturn.Add(new Item(ItemID.GoldCoin, (int)gold));
+
+                while (plat > 0)
+                {
+                    toReturn.Add(new Item(ItemID.PlatinumCoin, Math.Min((int)plat, 999)));
+                    plat -= Math.Min(plat, 999);
+                }
+            } else
+            {
+                while (plat > 0)
+                {
+                    toReturn.Add(new Item(ItemID.PlatinumCoin, Math.Min((int)plat, 999)));
+                    plat -= Math.Min(plat, 999);
+                }
+
+                if (gold > 0) toReturn.Add(new Item(ItemID.GoldCoin, (int)gold));
+                if (silver > 0) toReturn.Add(new Item(ItemID.SilverCoin, (int)silver));
+                if (copper > 0) toReturn.Add(new Item(ItemID.CopperCoin, (int)copper));
             }
 
             return toReturn;
@@ -89,7 +104,6 @@ namespace AutoPiggyBank
         /// <param name="items">The items to put into the chest</param>
         public static void ReplaceOrPlaceIntoChest(Chest chest, List<Item> items)
         {
-            Console.WriteLine(String.Format("[{0}]", String.Join(", ", items)));
             var toIgnore = new List<int>();
 
             foreach (Item item in items)

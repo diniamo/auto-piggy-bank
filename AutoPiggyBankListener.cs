@@ -11,7 +11,7 @@ namespace AutoPiggyBank
         public override bool OnPickup(Item item, Player player)
         {
             var clientConfig = ModContent.GetInstance<AutoPiggyBankClientConfig>();
-            if (!clientConfig.AutoPiggyBankToggle || clientConfig.TriggerOnPiggyBankOpen) 
+            if (!clientConfig.AutoPiggyBankToggle || clientConfig.TriggerOnMoneyTroughOpen) 
                 return base.OnPickup(item, player);
             if (ModContent.GetInstance<AutoPiggyBankServerConfig>().RequireMoneyTrough && !Utils.HasItem(player.inventory, ItemID.MoneyTrough)) 
                 return base.OnPickup(item, player);
@@ -44,7 +44,7 @@ namespace AutoPiggyBank
                 return base.UseItem(item, player);
 
             var clientConfig = ModContent.GetInstance<AutoPiggyBankClientConfig>();
-            if (!clientConfig.AutoPiggyBankToggle || !clientConfig.TriggerOnPiggyBankOpen)
+            if (!clientConfig.AutoPiggyBankToggle || !clientConfig.TriggerOnMoneyTroughOpen)
                 return base.UseItem(item, player);
 
 

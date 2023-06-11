@@ -14,9 +14,14 @@ namespace AutoPiggyBank
         public bool AutoPiggyBankToggle;
 
         [Label("Trigger On Money Trough Interact")]
-        [Tooltip("If enabled, the mod only puts the coins into the player's piggy once they interact with the Money Trough item")]
+        [Tooltip("If enabled, the mod only puts the coins into your piggy once you interact with the Money Trough item")]
         [DefaultValue(false)]
-        public bool TriggerOnPiggyBankOpen;
+        public bool TriggerOnMoneyTroughOpen;
+
+        [Label("Invert Money Placement Order")]
+        [Tooltip("Inverts the order that money is placed into your piggy bank (this is only useful when using Trigger On Money Trough Open)")]
+        [DefaultValue(false)]
+        public bool InvertMoneyPlacementOrder;
     }
 
     public class AutoPiggyBankServerConfig : ModConfig
@@ -24,7 +29,7 @@ namespace AutoPiggyBank
         public override ConfigScope Mode => ConfigScope.ServerSide;
 
         [Label("Require Money Trough")]
-        [Tooltip("If enabled, the player has to have to have a Money Trough in their inventory for the mod to take effect")]
+        [Tooltip("If enabled, players have to have a Money Trough in their inventory for the mod to take effect")]
         [DefaultValue(true)]
         public bool RequireMoneyTrough;
     }
