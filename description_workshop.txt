@@ -3,6 +3,7 @@ Auto Piggy Bank automatically stores your coins into your piggy bank.
 Client side configuration:
 - Auto Piggy Bank Toggle (Default: On): toggles the mod's functionality for the current player
 - Trigger On Money Trough interact (Default: Off): if enabled, the mod only puts the coins into the player's piggy once they use the Money Trough item
+- Invert Money Placement Order (Default: Off): inverts the order that money is placed into your piggy bank (this is only useful when using Trigger On Money Trough Open)
 
 Server side configuration:
 - Require Money Trough (Default: On): if enabled, the player has to have to have a Money Trough in their inventory for the mod to take effect
