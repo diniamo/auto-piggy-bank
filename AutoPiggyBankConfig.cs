@@ -3,7 +3,7 @@ using Terraria.ModLoader.Config;
 
 namespace AutoPiggyBank
 {
-    public class AutoPiggyBankClientConfig : ModConfig
+    public class ClientConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ClientSide;
 
@@ -24,7 +24,7 @@ namespace AutoPiggyBank
         public bool InvertMoneyPlacementOrder;
     }
 
-    public class AutoPiggyBankServerConfig : ModConfig
+    public class ServerConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
 

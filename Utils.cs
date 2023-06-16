@@ -70,7 +70,7 @@ namespace AutoPiggyBank
 
             var toReturn = new List<Item>();
 
-            if (!ModContent.GetInstance<AutoPiggyBankClientConfig>().InvertMoneyPlacementOrder)
+            if (!ModContent.GetInstance<ClientConfig>().InvertMoneyPlacementOrder)
             {
                 if (copper > 0) toReturn.Add(new Item(ItemID.CopperCoin, (int)copper));
                 if (silver > 0) toReturn.Add(new Item(ItemID.SilverCoin, (int)silver));

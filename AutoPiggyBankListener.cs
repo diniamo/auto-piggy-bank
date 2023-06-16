@@ -10,10 +10,10 @@ namespace AutoPiggyBank
     {
         public override bool OnPickup(Item item, Player player)
         {
-            var clientConfig = ModContent.GetInstance<AutoPiggyBankClientConfig>();
+            var clientConfig = ModContent.GetInstance<ClientConfig>();
             if (!clientConfig.AutoPiggyBankToggle || clientConfig.TriggerOnMoneyTroughOpen) 
                 return base.OnPickup(item, player);
-            if (ModContent.GetInstance<AutoPiggyBankServerConfig>().RequireMoneyTrough && !Utils.HasItem(player.inventory, ItemID.MoneyTrough)) 
+            if (ModContent.GetInstance<ServerConfig>().RequireMoneyTrough && !Utils.HasItem(player.inventory, ItemID.MoneyTrough)) 
                 return base.OnPickup(item, player);
 
 
@@ -30,6 +30,7 @@ namespace AutoPiggyBank
                 List<Item> toPlace = Utils.ConvertCopperValueToCoins(totalMoney);
                 Utils.ReplaceOrPlaceIntoChest(player.bank, toPlace);
 
+                PopupText.NewText(PopupTextContext.RegularItemPickup, item, item.stack);
                 SoundEngine.PlaySound(SoundID.CoinPickup, player.position);
                 return false;
             }
@@ -43,7 +44,7 @@ namespace AutoPiggyBank
             if (item.type != ItemID.MoneyTrough)
                 return base.UseItem(item, player);
 
-            var clientConfig = ModContent.GetInstance<AutoPiggyBankClientConfig>();
+            var clientConfig = ModContent.GetInstance<ClientConfig>();
             if (!clientConfig.AutoPiggyBankToggle || !clientConfig.TriggerOnMoneyTroughOpen)
                 return base.UseItem(item, player);
 
