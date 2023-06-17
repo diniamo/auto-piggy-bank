@@ -72,9 +72,9 @@ namespace AutoPiggyBank
 
             if (!ModContent.GetInstance<ClientConfig>().InvertMoneyPlacementOrder)
             {
-                if (copper > 0) toReturn.Add(new Item(ItemID.CopperCoin, (int)copper));
-                if (silver > 0) toReturn.Add(new Item(ItemID.SilverCoin, (int)silver));
-                if (gold > 0) toReturn.Add(new Item(ItemID.GoldCoin, (int)gold));
+                toReturn.Add(new Item(ItemID.CopperCoin, (int)copper));
+                toReturn.Add(new Item(ItemID.SilverCoin, (int)silver));
+                toReturn.Add(new Item(ItemID.GoldCoin, (int)gold));
 
                 while (plat > 0)
                 {
@@ -89,9 +89,9 @@ namespace AutoPiggyBank
                     plat -= Math.Min(plat, 999);
                 }
 
-                if (gold > 0) toReturn.Add(new Item(ItemID.GoldCoin, (int)gold));
-                if (silver > 0) toReturn.Add(new Item(ItemID.SilverCoin, (int)silver));
-                if (copper > 0) toReturn.Add(new Item(ItemID.CopperCoin, (int)copper));
+                toReturn.Add(new Item(ItemID.GoldCoin, (int)gold));
+                toReturn.Add(new Item(ItemID.SilverCoin, (int)silver));
+                toReturn.Add(new Item(ItemID.CopperCoin, (int)copper));
             }
 
             return toReturn;
