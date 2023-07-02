@@ -132,7 +132,7 @@ namespace AutoPiggyBank
                     }
                 }
 
-            outer_end:;
+                outer_end:;
             }
         }
 

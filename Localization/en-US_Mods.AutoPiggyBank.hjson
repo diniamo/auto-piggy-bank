@@ -1,0 +1,29 @@
+Configs: {
+	ServerConfig: {
+		RequireMoneyTrough: {
+			Tooltip: If enabled, players have to have a Money Trough in their inventory for the mod to take effect
+			Label: Require Money Trough
+		}
+
+		DisplayName: Server Config
+	}
+
+	ClientConfig: {
+		InvertMoneyPlacementOrder: {
+			Tooltip: Inverts the order that money is placed into your piggy bank (this is only useful when using Trigger On Money Trough Open)
+			Label: Invert Money Placement Order
+		}
+
+		TriggerOnMoneyTroughOpen: {
+			Tooltip: If enabled, the mod only puts the coins into your piggy once you interact with the Money Trough item
+			Label: Trigger On Money Trough Interact
+		}
+
+		AutoPiggyBankToggle: {
+			Tooltip: Toggles the mod's functionality for the current player
+			Label: Auto Piggy Bank Toggle
+		}
+
+		DisplayName: Client Config
+	}
+}
