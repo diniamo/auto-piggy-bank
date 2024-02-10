@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
@@ -17,11 +18,9 @@ namespace AutoPiggyBank
                 return base.OnPickup(item, player);
 
 
-            int type = item.type;
-
-            if (Utils.IsCoin(type))
+            if (item.IsACoin)
             {
-                ulong totalMoney = Utils.CalculateCoinValue(type, (uint) item.stack);
+                ulong totalMoney = Utils.CalculateCoinValue(item.type, (uint) item.stack);
                 foreach (Item bItem in player.bank.item)
                 {
                     totalMoney += Utils.CalculateCoinValue(bItem.type, (uint) bItem.stack);
@@ -53,7 +52,7 @@ namespace AutoPiggyBank
             for (int i = 0; i < player.inventory.Length; i++)
             {
                 Item pItem = player.inventory[i];
-                if (!Utils.IsCoin(pItem.type))
+                if (!pItem.IsACoin)
                     continue;
 
                 totalMoney += Utils.CalculateCoinValue(pItem.type, (uint) pItem.stack);

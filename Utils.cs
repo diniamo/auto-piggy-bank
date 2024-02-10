@@ -8,20 +8,12 @@ namespace AutoPiggyBank
 {
     public static class Utils
     {
-        public const ulong COPPER_VALUE = 1;
-        public const ulong SILVER_VALUE = 100;
-        public const ulong GOLD_VALUE = 100 * 100;
-        public const ulong PLATINUM_VALUE = 100 * 100 * 100;
+        public const ulong COPPER_VALUE = Item.copper;
+        public const ulong SILVER_VALUE = Item.silver;
+        public const ulong GOLD_VALUE = Item.gold;
+        public const ulong PLATINUM_VALUE = Item.platinum;
 
-        /// <summary>
-        /// Checks if an item is a coin.
-        /// </summary>
-        /// <param name="type">The item's type id</param>
-        /// <returns>True if yes, false if no</returns>
-        public static bool IsCoin(int type)
-        {
-            return 71 <= type && type <= 74;
-        }
+        public static ulong PLATINUM_MAX_STACK = (ulong)ContentSamples.ItemsByType[ItemID.PlatinumCoin].maxStack;
 
         /// <summary>
         /// Calculates
@@ -45,7 +37,7 @@ namespace AutoPiggyBank
                     return 0;
             }
             /*
-                // Alternative implementation:
+            // Alternative implementation:
             if (IsCoin(type))
             {
                 return stack * (ulong)Math.Pow(100, type - 71);
@@ -78,15 +70,17 @@ namespace AutoPiggyBank
 
                 while (plat > 0)
                 {
-                    toReturn.Add(new Item(ItemID.PlatinumCoin, Math.Min((int)plat, 999)));
-                    plat -= Math.Min(plat, 999);
+                    ulong used = Math.Min(plat, PLATINUM_MAX_STACK);
+                    toReturn.Add(new Item(ItemID.PlatinumCoin, (int)used));
+                    plat -= used;
                 }
             } else
             {
                 while (plat > 0)
                 {
-                    toReturn.Add(new Item(ItemID.PlatinumCoin, Math.Min((int)plat, 999)));
-                    plat -= Math.Min(plat, 999);
+                    ulong used = Math.Min(plat, PLATINUM_MAX_STACK);
+                    toReturn.Add(new Item(ItemID.PlatinumCoin, (int)used));
+                    plat -= used;
                 }
 
                 toReturn.Add(new Item(ItemID.GoldCoin, (int)gold));
